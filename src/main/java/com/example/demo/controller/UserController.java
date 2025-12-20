@@ -18,9 +18,9 @@ public class UserController{
     @Autowired  UserService ser;
     @PostMapping("/register")
     public User sendData(@RequestBody User stu){
-        return ser.postData1(stu);
+        return ser.registerUser(stu);
     }
-    @GetMapping("/get")
+    @GetMapping("/all")
     public List<User> getval(){
         return ser.getAllData1();
     }
@@ -28,9 +28,9 @@ public class UserController{
     public String del(@PathVariable int id){
         return ser.DeleteData1(id);
     }
-    @GetMapping("/find/{id}")
+    @GetMapping("/all/{id}")
     public User find(@PathVariable int id){
-        return ser.getData1(id);
+        return ser.(id);
     }
     @PutMapping("/put/{id}")
     public User putval(@PathVariable int id,@RequestBody User entity){
