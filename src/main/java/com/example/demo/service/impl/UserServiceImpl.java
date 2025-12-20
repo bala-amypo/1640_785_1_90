@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService{
     
     
     @Override
-    public     User registerUser(User user){
+    public User registerUser(User user){
         return used.save(use);  
     }
     @Override
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public User Userupdate(Long id,UserService model){
         if(used.existsById(id)){
-            entity.setId(id);
+            model.setId(id);
             return used.save(model);
         } 
         return null;
