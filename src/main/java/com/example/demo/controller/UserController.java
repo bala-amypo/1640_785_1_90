@@ -22,7 +22,7 @@ public class UserController{
     }
     @GetMapping("/all")
     public List<User> getval1(){
-        return ser.getAllData1();
+        return ser.getAllData();
     }
     @DeleteMapping("/delete/{id}")
     public String del1(@PathVariable Long id){
