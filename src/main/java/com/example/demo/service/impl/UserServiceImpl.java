@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService{
         return "Deleted successfully";
     }
     @Override
-    public User getUser(Long id);{
+    public User getUser(Long id){
     return used.findById(id).orElse(null);
     }
     @Override
