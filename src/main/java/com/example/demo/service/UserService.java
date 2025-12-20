@@ -10,5 +10,5 @@ public interface UserService{
 
     String UserDelete(Long id);
     
-    User Userupdate(int id,User model);
+    User Userupdate(Long id,User model);
 }
