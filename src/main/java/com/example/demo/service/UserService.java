@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.UserService;
+import com.example.demo.model.User;
 import java.util.List;
 public interface UserService{
 
@@ -10,5 +10,5 @@ public interface UserService{
 
     String UserDelete(int id);
     
-    User Userupdate(int id,UserService model);
+    User Userupdate(int id,User model);
 }
