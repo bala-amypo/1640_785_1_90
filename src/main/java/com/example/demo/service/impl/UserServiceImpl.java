@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService{
     
     @Override
     public User registerUser(User user){
-        return used.save(use);  
+        return used.save(user);  
     }
     @Override
      public List<User>getAllData(){
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService{
     return used.findById(id).orElse(null);
     }
     @Override
-    public User Userupdate(Long id,UserService model){
+    public User Userupdate(Long id,User model){
         if(used.existsById(id)){
             model.setId(id);
             return used.save(model);
