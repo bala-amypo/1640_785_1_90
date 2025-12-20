@@ -22,7 +22,7 @@ public class Ticket {
     @Column(nullable = false)
     private String subject;
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, length = 1000,message="Message must contain description")
     private String description;
 
     @Column(nullable = false)
