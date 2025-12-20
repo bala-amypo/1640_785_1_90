@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;   
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
-import org.springframework.web.bind.annotation.PathVariable;
 import com.example.demo.service.UserService;                
 
 @Service
@@ -23,7 +22,7 @@ public class UserServiceImpl implements UserService{
         return used.findAll();
     }
     @Override
-    public  String UserDelete(int id){
+    public  String UserDelete(Long id){
         used.deleteById(id);
         return "Deleted successfully";
     }
@@ -32,7 +31,7 @@ public class UserServiceImpl implements UserService{
     return used.findById(id).orElse(null);
     }
     @Override
-    public User Userupdate(int id,UserService model){
+    public User Userupdate(Long id,UserService model){
         if(used.existsById(id)){
             entity.setId(id);
             return used.save(model);

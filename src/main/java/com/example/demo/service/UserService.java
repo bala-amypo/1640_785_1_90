@@ -8,7 +8,7 @@ public interface UserService{
         User getUser(Long id);
         List<User>getAllData();
 
-    String UserDelete(int id);
+    String UserDelete(Long id);
     
     User Userupdate(int id,User model);
 }
