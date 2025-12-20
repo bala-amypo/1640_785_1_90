@@ -4,9 +4,11 @@ import com.example.demo.entity.UserService;
 import java.util.List;
 public interface UserService{
 
-    user re(UserService stu);
-    List<UserService>getAllData();
-    String DeleteData(int id);
-    UserService getData(int id);
-    UserService updateData(int id,UserService entity);
+    User registerUser(User user);
+        User getUser(Long id);
+        List<User>getAllData();
+
+    String UserDelete(int id);
+    
+    User Userupdate(int id,UserService entity);
 }
