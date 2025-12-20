@@ -32,10 +32,10 @@ public class UserServiceImpl implements UserService{
     return used.findById(id).orElse(null);
     }
     @Override
-    public User Userupdate(int id,UserService entity){
+    public User Userupdate(int id,UserService model){
         if(used.existsById(id)){
             entity.setId(id);
-            return used.save(entity);
+            return used.save(model);
         } 
         return null;
     }

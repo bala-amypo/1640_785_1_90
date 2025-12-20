@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.TicketService;
+import com.example.demo.model.TicketService;
 import java.util.List;
 public interface TicketService{
 
@@ -8,5 +8,5 @@ public interface TicketService{
     List<TicketService>getAllData1();
     String DeleteData1(int id);
    TicketService getData1(int id);
-   TicketService updateData1(int id,TicketService entity);
+   TicketService updateData1(int id,TicketService model);
 }

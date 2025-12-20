@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.DuplicateDetectionService;
+import com.example.demo.model.DuplicateDetectionService;
 import java.util.List;
 public interface DuplicateDetectionService{
 
@@ -8,5 +8,5 @@ public interface DuplicateDetectionService{
     List<DuplicateDetectionService>getAllData4();
     String DeleteData4(int id);
     DuplicateDetectionService getData4(int id);
-   DuplicateDetectionService updateData4(int id,DuplicateDetectionService entity);
+   DuplicateDetectionService updateData4(int id,DuplicateDetectionService model);
 }
