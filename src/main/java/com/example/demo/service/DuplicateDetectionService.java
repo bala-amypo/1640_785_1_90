@@ -1,12 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.UserService;
+import com.example.demo.entity.DuplicateDetectionService;
 import java.util.List;
-public interface UserService{
+public interface DuplicateDetectionService{
 
-    UserService postData(UserService stu);
-    List<UserService>getAllData();
-    String DeleteData(int id);
-    UserService getData(int id);
-    UserService updateData(int id,UserService entity);
+   DuplicateDetectionService postData4(DuplicateDetectionService stu);
+    List<DuplicateDetectionService>getAllData4();
+    String DeleteData4(int id);
+    DuplicateDetectionService getData4(int id);
+   DuplicateDetectionService updateData4(int id,DuplicateDetectionService entity);
 }
