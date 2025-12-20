@@ -11,25 +11,32 @@ import com.example.demo.service.UserService;
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired UserRepository used;
+
+        
+       
+
+   
+    
+    
     @Override
-    public User postData(User use){
+    public     User registerUser(User user){
         return used.save(use);  
     }
     @Override
-    public List<User>getAllData(){
+     public List<User>getAllData(){
         return used.findAll();
     }
     @Override
-    public String DeleteData(@PathVariable int id){
+    public  String UserDelete(int id){
         used.deleteById(id);
         return "Deleted successfully";
     }
     @Override
-    public User getData(int id){
+    public User getUser(Long id);{
     return used.findById(id).orElse(null);
     }
     @Override
-    public User updateData(int id,User entity){
+    public User Userupdate(int id,UserService entity){
         if(used.existsById(id)){
             entity.setId(id);
             return used.save(entity);
