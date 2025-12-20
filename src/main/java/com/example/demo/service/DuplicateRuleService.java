@@ -1,12 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.UserService;
+import com.example.demo.entity.DuplicateRuleService;
 import java.util.List;
-public interface UserService{
+public interface DuplicateRuleService{
 
-    UserService postData(UserService stu);
-    List<UserService>getAllData();
+    DuplicateRuleService postData(DuplicateRuleService stu);
+    List<DuplicateRuleService>getAllData();
     String DeleteData(int id);
-    UserService getData(int id);
-    UserService updateData(int id,UserService entity);
+    DuplicateRuleService getData(int id);
+    DuplicateRuleService updateData(int id,DuplicateRuleService entity);
 }

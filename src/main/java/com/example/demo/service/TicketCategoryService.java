@@ -1,12 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.UserService;
+import com.example.demo.entity.TicketCategoryService;
 import java.util.List;
-public interface UserService{
+public interface TicketCategoryService{
 
-    UserService postData(UserService stu);
-    List<UserService>getAllData();
-    String DeleteData(int id);
-    UserService getData(int id);
-    UserService updateData(int id,UserService entity);
+    TicketCategoryService postData2(TicketCategoryService stu);
+    List<TicketCategoryService>getAllData2();
+    String DeleteData2(int id);
+    TicketCategoryService getData2(int id);
+    TicketCategoryService updateData2(int id,TicketCategoryService entity);
 }
