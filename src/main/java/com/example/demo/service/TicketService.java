@@ -10,7 +10,7 @@ public interface TicketService {
 
     List<Ticket> getAllTickets();
      
-     String userDelete(Long id);
+     String ticketDelete(Long id);
 
-    User userUpdate(Long id, User user);
+    User ticketUpdate(Long id, Ticket ticket);
 }

@@ -61,4 +61,19 @@ public class TicketServiceImpl implements TicketService {
     public List<Ticket> getAllTickets() {
         return ticketRepository.findAll();
     }
+
+     @Override
+    public User userUpdate(Long id, User user) {
+        if (used.existsById(id)) {
+            user.setId(id);
+            return used.save(user);
+        }
+        return null;
+    }
+
+    @Override
+    public String userDelete(Long id) {
+        used.deleteById(id);
+        return "Deleted successfully";
+    }
 }
