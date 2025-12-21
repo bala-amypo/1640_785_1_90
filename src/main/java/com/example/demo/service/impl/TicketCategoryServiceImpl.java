@@ -5,39 +5,39 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.TicketCategory;
-import com.example.demo.repository.TicketCategoryRepository;
-import com.example.demo.service.TicketCategoryService;
+import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.Service;
 
 @Service
-public class TicketCategoryServiceImpl implements TicketCategoryService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    private TicketCategoryRepository used;
+    private UserRepository used;
 
     @Override
-    public TicketCategory registerUser(TicketCategory user) {
+    public User registerUser(User user) {
         return used.save(user);
     }
 
     @Override
-    public List<TicketCategory> getAllUsers() {
+    public List<User> getAllUsers() {
         return used.findAll();
     }
 
     @Override
-    public void delete(Long id) {
-    categories.removeIf(c -> c.getId().equals(id));
+    public String userDelete(Long id) {
+        used.deleteById(id);
+        return "Deleted successfully";
     }
 
-
     @Override
-    public TicketCategory getUser(Long id) {
+    public User getUser(Long id) {
         return used.findById(id).orElse(null);
     }
 
     @Override
-    public TicketCategory userUpdate(Long id, TicketCategory user) {
+    public User userUpdate(Long id, User user) {
         if (used.existsById(id)) {
             user.setId(id);
             return used.save(user);
