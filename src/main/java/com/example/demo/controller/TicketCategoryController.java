@@ -37,6 +37,6 @@ public class TicketCategoryController {
 
     @PutMapping("/{id}")
     public TicketCategory updateTicketCategory(@PathVariable Long id, @RequestBody TicketCategory category) {
-        return ser.ticketcategoryUpdate(id, user);
+        return ser.ticketcategoryUpdate(id, category);
     }
 }
