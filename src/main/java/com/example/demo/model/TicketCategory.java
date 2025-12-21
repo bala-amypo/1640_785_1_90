@@ -34,8 +34,6 @@ public class TicketCategory {
     private LocalDateTime createdAt;
 
     
-
-    // Parameterized constructor
     public TicketCategory(String categoryName, String description) {
         this.categoryName = categoryName;
         this.description = description;

@@ -38,8 +38,7 @@ public class User {
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
-
-    // Parameterized constructor (manual, as required)
+    
     public User(String fullName, String email, String password, String role) {
         this.fullName = fullName;
         this.email = email;

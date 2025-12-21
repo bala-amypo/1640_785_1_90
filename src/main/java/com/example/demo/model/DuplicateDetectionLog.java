@@ -17,9 +17,6 @@ public class DuplicateDetectionLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    // Base ticket for which duplicates are being detected
-   
     
 
     @Column(name = "match_score", nullable = false)
@@ -28,9 +25,6 @@ public class DuplicateDetectionLog {
     @Column(name = "detected_at", nullable = false, updatable = false)
     private LocalDateTime detectedAt;
 
-   
-
-    // Automatically set detectedAt on first persist
     @PrePersist
     protected void onDetect() {
         this.detectedAt = LocalDateTime.now();
