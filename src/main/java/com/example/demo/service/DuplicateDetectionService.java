@@ -10,6 +10,5 @@ public interface DuplicateDetectionLogService {
 
     String duplicatedetectionlogDelete(Long id);
 
-    User duplicatedetedtionlogUpdate(Long id,DuplicateDetectionLog 
-    log );
+    User duplicatedetedtionlogUpdate(Long id,DuplicateDetectionLog Log );
 }
