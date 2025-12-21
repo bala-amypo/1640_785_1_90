@@ -16,8 +16,8 @@ public class TicketCategoryController {
     private TicketCategoryService ser;
 
     @PostMapping
-    public TicketCategory createUser1(@RequestBody TicketCategory user) {
-        return ser.registerUser(user);
+    public TicketCategory createUser(@RequestBody TicketCategory user) {
+        return ser.registerUser1(user);
     }
 
     @GetMapping
