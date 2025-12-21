@@ -31,27 +31,12 @@ public class TicketCategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteTicketCategory(@PathVariable Long id) {
+    public String deleteCategory(@PathVariable Long id) {
         return ser.ticketcategoryDelete(id);
     }
 
     @PutMapping("/{id}")
-    public TicketCategory updateTicketCategory(@PathVariable Long id, @RequestBody TicketCategory category) {
+    public TicketCategory updateCategory(@PathVariable Long id, @RequestBody TicketCategory category) {
         return ser.ticketcategoryUpdate(id, category);
-    }
-}
-package com.example.demo.controller;
-
-import com.example.demo.service.TicketCategoryService;
-import org.springframework.web.bind.annotation.*;
-
-@RestController
-@RequestMapping("/categories")
-public class TicketCategoryController {
-
-    private final TicketCategoryService service;
-
-    public TicketCategoryController(TicketCategoryService service) {
-        this.service = service;
     }
 }
