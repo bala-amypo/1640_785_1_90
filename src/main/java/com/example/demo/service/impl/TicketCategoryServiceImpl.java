@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.TicketCategory;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.repository.TicketCategoryRepository;
 import com.example.demo.service.TicketCategoryService;
 
 @Service
