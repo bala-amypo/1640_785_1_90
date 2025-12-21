@@ -8,4 +8,3 @@ import com.example.demo.model.DuplicateRule;
 public interface DuplicateRuleRepository
         extends JpaRepository<DuplicateRule, Long> {
 }
-DuplicateRule
