@@ -1,44 +1,47 @@
-package com.example.demo.model;
+package com.example.demo.service.impl;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.List;
 
-import java.time.LocalDateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Entity
-@Table(
-    name = "ticket_categories",
-    uniqueConstraints = {
-        @UniqueConstraint(columnNames = "categoryName")
-    }
-)
-@Getter
-@Setter
-@NoArgsConstructor
-public class TicketCategory {
+import com.example.demo.model.TicketCategory;
+import com.example.demo.repository.TicketCategoryRepository;
+import com.example.demo.service.TicketCategoryService;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Service
+public class TicketCategoryServiceImpl implements TicketCategoryService {
 
-    @Column(nullable = false, unique = true)
-    private String categoryName;
+    @Autowired
+    private TicketCategoryRepository used;
 
-    @Column
-    private String description;
-
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
-
-    public TicketCategory(String categoryName, String description) {
-        this.categoryName = categoryName;
-        this.description = description;
+    @Override
+    public TicketCategory registerUser1(TicketCategory user) {
+        return used.save(user);
     }
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
+    @Override
+    public List<TicketCategory> getAllUsers1() {
+        return used.findAll();
+    }
+
+    @Override
+    public String userDelete1(Long id) {
+        used.deleteById(id);
+        return "Deleted successfully";
+    }
+
+    @Override
+    public TicketCategory getUser1(Long id) {
+        return used.findById(id).orElse(null);
+    }
+
+    @Override
+    public TicketCategory userUpdate1(Long id, TicketCategory user) {
+        if (used.existsById(id)) {
+            user.setId(id);
+            return used.save(user);
+        }
+        return null;
     }
 }
