@@ -5,39 +5,39 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.model.Ticket;
-import com.example.demo.service.TicketService;
+import com.example.demo.model.DuplicateRule;
+import com.example.demo.service.DuplicateRuleService;
 
 @RestController
-@RequestMapping("/ticket")
-public class TicketController {
+@RequestMapping("/duplicaterule")
+public class DuplicateRuleController {
 
     @Autowired
-    private TicketService sev;
+    private DuplicateRuleService sev;
 
     @PostMapping
-    public Ticket createUser(@RequestBody Ticket user) {
-        return sev.registerUser2(user);
+    public DuplicateRule createUser(@RequestBody DuplicateRule user) {
+        return sev.registerUser3(user);
     }
 
     @GetMapping
-    public List<Ticket> getAllUsers() {
-        return sev.getAllUsers2();
+    public List<DuplicateRule> getAllUsers() {
+        return sev.getAllUsers3();
     }
 
     @GetMapping("/{id}")
-    public Ticket getUser(@PathVariable Long id) {
-        return sev.getUser2(id);
+    public DuplicateRule getUser(@PathVariable Long id) {
+        return sev.getUser3(id);
     }
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable Long id) {
-        return sev.userDelete2(id);
+        return sev.userDelete3(id);
     }
 
     @PutMapping("/{id}")
-    public Ticket updateUser(@PathVariable Long id,
-                                     @RequestBody Ticket user) {
-        return sev.userUpdate2(id, user);
+    public DuplicateRule updateUser(@PathVariable Long id,
+                                     @RequestBody DuplicateRule user) {
+        return sev.userUpdate3(id, user);
     }
 }
