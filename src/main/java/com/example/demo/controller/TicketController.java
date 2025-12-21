@@ -37,7 +37,7 @@ public class TicketController {
 
     @PutMapping("/{id}")
     public Ticket updateUser(@PathVariable Long id,
-                                     @RequestBody Ticketuser) {
+                                     @RequestBody Ticket user) {
         return sev.userUpdate2(id, user);
     }
 }
