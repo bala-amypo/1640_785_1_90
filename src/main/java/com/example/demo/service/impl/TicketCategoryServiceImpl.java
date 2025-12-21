@@ -13,7 +13,7 @@ import com.example.demo.service.TicketCategoryService;
 public class TicketCategoryServiceImpl implements TicketCategoryService {
 
     @Autowired
-    private UserRepository used;
+    private TicketCategoryRepository used;
 
     @Override
     public TicketCategory registerUser(TicketCategory user) {
