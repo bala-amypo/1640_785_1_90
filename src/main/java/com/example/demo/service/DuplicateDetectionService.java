@@ -1,12 +1,14 @@
-// package com.example.demo.service;
+import java.util.List;
 
-// import com.example.demo.model.DuplicateDetectionService;
-// import java.util.List;
-// public interface DuplicateDetectionService{
+public interface DuplicateDetectionLogService {
 
-//    DuplicateDetectionService postData4(DuplicateDetectionService stu);
-//     List<DuplicateDetectionService>getAllData4();
-//     String DeleteData4(int id);
-//     DuplicateDetectionService getData4(int id);
-//    DuplicateDetectionService updateData4(int id,DuplicateDetectionService model);
-// }
+    List<DuplicateDetectionLog> detectDuplicates(Long ticketId);
+
+    List<DuplicateDetectionLog> getLogsForTicket(Long ticketId);
+
+    DuplicateDetectionLog getLog(Long id);
+
+    String userDelete(Long id);
+
+    User userUpdate(Long id, User user);
+}
