@@ -32,11 +32,11 @@ public class TicketCategoryController {
 
     @DeleteMapping("/{id}")
     public String deleteCategory(@PathVariable Long id) {
-        return ser.ticketcategoryDelete(id);
+        return ser.categoryDelete(id);
     }
 
     @PutMapping("/{id}")
     public TicketCategory updateCategory(@PathVariable Long id, @RequestBody TicketCategory category) {
-        return ser.ticketcategoryUpdate(id, category);
+        return ser.categoryUpdate(id, category);
     }
 }
