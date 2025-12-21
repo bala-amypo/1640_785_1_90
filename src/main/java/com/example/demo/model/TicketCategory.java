@@ -24,10 +24,10 @@ public class TicketCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true,message=("Message must contain category or exists"))
+    @Column(nullable = false, unique = true)
     private String categoryName;
 
-    @Column(message="Message Must contain description")
+    @Column
     private String description;
 
     @Column(nullable = false)
