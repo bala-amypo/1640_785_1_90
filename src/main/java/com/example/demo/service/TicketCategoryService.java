@@ -2,13 +2,13 @@ import java.util.List;
 
 public interface TicketCategoryService {
 
-    TicketCategory createCategory(TicketCategory category);
+    TicketCategory createCategory(Category category);
 
     List<TicketCategory> getAllCategories();
 
     TicketCategory getCategory(Long id);
 
-    String ticketcategoryDelete(Long id);
+    String categoryDelete(Long id);
 
-    TicketCategory ticketcategoryUpdate(Long id, TicketCategory category);
+    TicketCategory categoryUpdate(Long id, Category category);
 }

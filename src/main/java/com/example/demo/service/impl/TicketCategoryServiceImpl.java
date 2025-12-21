@@ -10,13 +10,13 @@ import com.example.demo.repository.TicketCategoryRepository;
 import com.example.demo.service.TicketCategoryService;
 
 @Service
-public class TicketCategoryServiceImpl implements TicketCategoryService {
+public class TicketCategoryServiceImpl implements CategoryService {
 
     @Autowired
     private TicketCategoryRepository categoryRepository;
 
     @Override
-    public TicketCategory createCategory(TicketCategory category) {
+    public TicketCategory createCategory(Category category) {
         return categoryRepository.save(category);
     }
 
@@ -37,7 +37,7 @@ public class TicketCategoryServiceImpl implements TicketCategoryService {
     }
 
     @Override
-    public TicketCategory updateCategory(Long id, TicketCategory category) {
+    public TicketCategory updateCategory(Long id, Category category) {
         if (categoryRepository.existsById(id)) {
             category.setId(id);
             return categoryRepository.save(category);
