@@ -8,7 +8,8 @@ public interface DuplicateDetectionLogService {
 
     DuplicateDetectionLog getLog(Long id);
 
-    String userDelete(Long id);
+    String duplicatedetectionlogDelete(Long id);
 
-    User userUpdate(Long id, User user);
+    User duplicatedetedtionlogUpdate(Long id,DuplicateDetectionLog 
+    log );
 }

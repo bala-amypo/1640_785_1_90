@@ -8,7 +8,7 @@ public interface DuplicateRuleService {
 
     DuplicateRule getRule(Long id);
 
-    String userDelete(Long id);
+    String duplicateruleDelete(Long id);
 
-    User userUpdate(Long id, User user);
+    User duplicateruleUpdate(Long id, DuplicateRule rule);
 }
