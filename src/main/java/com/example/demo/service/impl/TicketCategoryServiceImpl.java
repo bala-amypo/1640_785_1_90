@@ -16,28 +16,28 @@ public class TicketCategoryServiceImpl implements TicketCategoryService {
     private UserRepository used;
 
     @Override
-    public User registerUser1(User user) {
+    public TicketCategory registerUser(TicketCategory user) {
         return used.save(user);
     }
 
     @Override
-    public List<User> getAllUsers1() {
+    public List<TicketCategory> getAllUsers() {
         return used.findAll();
     }
 
     @Override
-    public String userDelete1(Long id) {
+    public String userDelete(Long id) {
         used.deleteById(id);
         return "Deleted successfully";
     }
 
     @Override
-    public User getUser1(Long id) {
+    public User getUser(Long id) {
         return used.findById(id).orElse(null);
     }
 
     @Override
-    public User userUpdate1(Long id, User user) {
+    public User userUpdate(Long id, User user) {
         if (used.existsById(id)) {
             user.setId(id);
             return used.save(user);
