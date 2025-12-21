@@ -1,48 +1,44 @@
-package com.example.demo.service.impl;
+package com.example.demo.model;
 
-import java.util.List;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.time.LocalDateTime;
 
-import com.example.demo.model.TicketCategory;
-import com.example.demo.repository.TicketCategoryRepository;
-import com.example.demo.service.TicketCategoryService;
+@Entity
+@Table(
+    name = "ticket_categories",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = "categoryName")
+    }
+)
+@Getter
+@Setter
+@NoArgsConstructor
+public class TicketCategory {
 
-@Service
-public class TicketCategoryServiceImpl implements TicketCategoryService {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Autowired
-    private TicketCategoryRepository used;
+    @Column(nullable = false, unique = true)
+    private String categoryName;
 
-    @Override
-    public TicketCategoryService registerUser1(TicketCategoryService user) {
-        return used.save(user);
+    @Column
+    private String description;
+
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    public TicketCategory(String categoryName, String description) {
+        this.categoryName = categoryName;
+        this.description = description;
     }
 
-    @Override
-    public List<TicketCategoryService> getAllUsers1() {
-        return used.findAll();
-    }
-
-    @Override
-    public String userDelete1(Long id) {
-        used.deleteById(id);
-        return "Deleted successfully";
-    }
-
-    @Override
-    public TicketCategoryService getUser1(Long id) {
-        return used.findById(id).orElse(null);
-    }
-
-    @Override
-    public TicketCategoryService userUpdate1(Long id, TicketCategoryService user) {
-        if (used.existsById(id)) {
-            user.setId(id);
-            return used.save(user);
-        }
-        return null;
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
     }
 }
-

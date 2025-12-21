@@ -22,7 +22,7 @@ public class TicketCategoryController {
 
     @GetMapping
     public List<TicketCategory> getAllUsers() {
-        return sev.getAllData1();
+        return sev.getAllUsers1();
     }
 
     @GetMapping("/{id}")
@@ -36,7 +36,8 @@ public class TicketCategoryController {
     }
 
     @PutMapping("/{id}")
-    public TicketCategory updateUser(@PathVariable Long id, @RequestBody TicketCategory user) {
+    public TicketCategory updateUser(@PathVariable Long id,
+                                     @RequestBody TicketCategory user) {
         return sev.userUpdate1(id, user);
     }
 }
