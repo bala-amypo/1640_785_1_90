@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
-import com.example.demo.model.TicketCategoryService;
+import com.example.demo.service.TicketCategoryService;
 
 public interface TicketCategoryService {
 
