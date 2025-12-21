@@ -13,30 +13,30 @@ import com.example.demo.service.TicketCategoryService;
 public class TicketCategoryController {
 
     @Autowired
-    private TicketCategoryService ser;
+    private TicketCategoryService sev;
 
     @PostMapping
     public TicketCategory createUser(@RequestBody TicketCategory user) {
-        return ser.registerUser1(user);
+        return sev.registerUser1(user);
     }
 
     @GetMapping
     public List<TicketCategory> getAllUsers() {
-        return ser.getAllData1();
+        return sev.getAllData1();
     }
 
     @GetMapping("/{id}")
     public TicketCategory getUser(@PathVariable Long id) {
-        return ser.getUser1(id);
+        return sev.getUser1(id);
     }
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable Long id) {
-        return ser.userDelete1(id);
+        return sev.userDelete1(id);
     }
 
     @PutMapping("/{id}")
     public TicketCategory updateUser(@PathVariable Long id, @RequestBody TicketCategory user) {
-        return ser.userUpdate1(id, user);
+        return sev.userUpdate1(id, user);
     }
 }
