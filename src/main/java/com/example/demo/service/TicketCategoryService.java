@@ -10,5 +10,5 @@ public interface TicketCategoryService {
 
     String userDelete(Long id);
 
-    User userUpdate(Long id, User user);
+    TicketCategory userUpdate(Long id, User user);
 }
