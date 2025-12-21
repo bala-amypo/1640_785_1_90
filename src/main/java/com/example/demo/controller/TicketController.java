@@ -5,24 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.model.TicketCategory;
-import com.example.demo.service.TicketCategoryService;
+import com.example.demo.model.Ticket;
+import com.example.demo.service.TicketService;
 
 @RestController
-@RequestMapping("/Category")
-public class TicketCategoryController {
+@RequestMapping("/ticket")
+public class TicketController {
 
     @Autowired
-    private TicketCategoryService sev;
+    private TicketService sev;
 
     @PostMapping
-    public TicketCategory createUser(@RequestBody TicketCategory user) {
-        return sev.registerUser1(user);
+    public Ticket createUser(@RequestBody Ticket user) {
+        return sev.registerUser2(user);
     }
 
     @GetMapping
-    public List<TicketCategory> getAllUsers() {
-        return sev.getAllUsers1();
+    public List<Ticket> getAllUsers() {
+        return sev.getAllUsers2();
     }
 
     @GetMapping("/{id}")
