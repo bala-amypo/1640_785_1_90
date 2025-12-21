@@ -5,28 +5,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.model.User;
-import com.example.demo.service.UserService;
+import com.example.demo.model.TicketCategory;
+import com.example.demo.service.TicketCategoryService;
 
 @RestController
 @RequestMapping("/categories")
-public class UserController {
+public class TicketCategoryController {
 
     @Autowired
-    private UserService ser;
+    private TicketCategoryService ser;
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public User createUser(@RequestBody TicketCategory user) {
         return ser.registerUser(user);
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<TicketCategory> getAllUsers() {
         return ser.getAllData();
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id) {
+    public TicketCategory getUser(@PathVariable Long id) {
         return ser.getUser(id);
     }
 
@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User user) {
+    public TicketCategory updateUser(@PathVariable Long id, @RequestBody TicketCategory user) {
         return ser.userUpdate(id, user);
     }
 }

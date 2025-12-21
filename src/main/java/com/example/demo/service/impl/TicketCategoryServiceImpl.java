@@ -32,12 +32,12 @@ public class TicketCategoryServiceImpl implements TicketCategoryService {
     }
 
     @Override
-    public User getUser(Long id) {
+    public TicketCategory getUser(Long id) {
         return used.findById(id).orElse(null);
     }
 
     @Override
-    public User userUpdate(Long id, User user) {
+    public TicketCategory userUpdate(Long id, TicketCategory user) {
         if (used.existsById(id)) {
             user.setId(id);
             return used.save(user);
