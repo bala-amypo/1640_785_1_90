@@ -13,7 +13,7 @@ import com.example.demo.service.DuplicateDetectionLogService;
 public class DuplicateDetectionLogController {
 
     @Autowired
-    private DuplicateRuleService sev;
+    private DuplicateDetectionLogService sev;
 
     @PostMapping
     public DuplicateDetectionLog createUser(@RequestBody DuplicateDetectionLog user) {
