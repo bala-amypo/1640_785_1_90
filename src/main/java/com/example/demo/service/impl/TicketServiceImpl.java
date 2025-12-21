@@ -1,48 +1,47 @@
-// package com.example.demo.service.impl;
+package com.example.demo.service.impl;
 
-// import java.util.List;
+import java.util.List;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// import com.example.demo.model.User;
-// import com.example.demo.repository.UserRepository;
-// import com.example.demo.service.UserService;
+import com.example.demo.model.TicketCategory;
+import com.example.demo.repository.TicketRepository;
+import com.example.demo.service.TicketService;
 
-// @Service
-// public class UserServiceImpl implements UserService {
+@Service
+public class TicketServiceImpl implements TicketService {
 
-//     @Autowired
-//     private UserRepository used;
+    @Autowired
+    private TicketRepository used;
 
-//     @Override
-//     public Ticket createTicket(Long userId, Long categoryId, Ticket ticket) {
-//         return used.save(ticket);
-//     }
+    @Override
+    public Ticket registerUser2(Ticket user) {
+        return used.save(user);
+    }
 
-//     @Override
-//     public List<User> getAllUsers() {
-//         return used.findAll();
-//     }
+    @Override
+    public List<Ticket> getAllUsers2() {
+        return used.findAll();
+    }
 
-//     @Override
-//     public String userDelete(Long id) {
-//         used.deleteById(id);
-//         return "Deleted successfully";
-//     }
+    @Override
+    public String userDelete2(Long id) {
+        used.deleteById(id);
+        return "Deleted successfully";
+    }
 
-//     @Override
-//     public User getUser(Long id) {
-//         return used.findById(id).orElse(null);
-//     }
+    @Override
+    public Ticket getUser2(Long id) {
+        return used.findById(id).orElse(null);
+    }
 
-//     @Override
-//     public User userUpdate(Long id, User user) {
-//         if (used.existsById(id)) {
-//             user.setId(id);
-//             return used.save(user);
-//         }
-//         return null;
-//     }
-// }
-
+    @Override
+    public Ticket userUpdate2(Long id, Ticket user) {
+        if (used.existsById(id)) {
+            user.setId(id);
+            return used.save(user);
+        }
+        return null;
+    }
+}
