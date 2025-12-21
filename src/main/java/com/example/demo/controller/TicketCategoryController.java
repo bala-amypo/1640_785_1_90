@@ -40,3 +40,18 @@ public class TicketCategoryController {
         return ser.ticketcategoryUpdate(id, category);
     }
 }
+package com.example.demo.controller;
+
+import com.example.demo.service.TicketCategoryService;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/categories")
+public class TicketCategoryController {
+
+    private final TicketCategoryService service;
+
+    public TicketCategoryController(TicketCategoryService service) {
+        this.service = service;
+    }
+}
