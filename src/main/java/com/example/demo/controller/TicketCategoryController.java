@@ -16,27 +16,27 @@ public class TicketCategoryController {
     private TicketCategoryService ser;
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public TicketCategory createUser1(@RequestBody TicketCategory user) {
         return ser.registerUser(user);
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<TicketCategory> getAllUsers1() {
         return ser.getAllData();
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id) {
+    public TicketCategory getUser1(@PathVariable Long id) {
         return ser.getUser(id);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable Long id) {
+    public String deleteUser1(@PathVariable Long id) {
         return ser.userDelete(id);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User user) {
+    public TicketCategory updateUser1(@PathVariable Long id, @RequestBody TicketCategory user) {
         return ser.userUpdate(id, user);
     }
 }
