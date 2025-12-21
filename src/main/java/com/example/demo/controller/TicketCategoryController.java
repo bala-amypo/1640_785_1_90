@@ -9,7 +9,7 @@ import com.example.demo.model.TicketCategory;
 import com.example.demo.service.TicketCategoryService;
 
 @RestController
-@RequestMapping("/ticketcategories")
+@RequestMapping("/categories")
 public class TicketCategoryController {
 
     @Autowired
