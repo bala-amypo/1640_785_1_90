@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository used;
 
     @Override
-    public User registerUser(User user) {
-        return used.save(user);
+    public Ticket createTicket(Long userId, Long categoryId, Ticket ticket) {
+        return used.save(ticket);
     }
 
     @Override
