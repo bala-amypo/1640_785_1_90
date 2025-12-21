@@ -1,12 +1,14 @@
-// package com.example.demo.service;
+import java.util.List;
 
-// import com.example.demo.model.TicketService;
-// import java.util.List;
-// public interface TicketService{
+public interface TicketCategoryService {
 
-//   TicketService postData1(TicketService stu);
-//     List<TicketService>getAllData1();
-//     String DeleteData1(int id);
-//    TicketService getData1(int id);
-//    TicketService updateData1(int id,TicketService model);
-// }
+    TicketCategory createCategory(TicketCategory category);
+
+    List<TicketCategory> getAllCategories();
+
+    TicketCategory getCategory(Long id);
+
+    String userDelete(Long id);
+
+    User userUpdate(Long id, User user);
+}
