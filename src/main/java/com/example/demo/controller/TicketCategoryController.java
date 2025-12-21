@@ -1,42 +1,44 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.model.TicketCategory;
 import com.example.demo.service.TicketCategoryService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/categories")
 public class TicketCategoryController {
 
-    @Autowired
-    private TicketCategoryService ser;
+    private final TicketCategoryService ser;
+
+    public TicketCategoryController(TicketCategoryService ser) {
+        this.ser = ser;
+    }
 
     @PostMapping
-    public TicketCategory createUser(@RequestBody TicketCategory user) {
-        return ser.registerUser(user);
+    public TicketCategory create(@RequestBody TicketCategory category) {
+        return ser.create(category);
     }
 
     @GetMapping
-    public List<TicketCategory> getAllUsers() {
-        return ser.getAllData();
+    public List<TicketCategory> getAll() {
+        return ser.getAll();
     }
 
     @GetMapping("/{id}")
-    public TicketCategory getUser(@PathVariable Long id) {
-        return ser.getUser(id);
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable Long id) {
-        return ser.userDelete(id);
+    public TicketCategory getById(@PathVariable Long id) {
+        return ser.getById(id);
     }
 
     @PutMapping("/{id}")
-    public TicketCategory updateUser(@PathVariable Long id, @RequestBody TicketCategory user) {
-        return ser.userUpdate(id, user);
+    public TicketCategory update(@PathVariable Long id,
+                                 @RequestBody TicketCategory category) {
+        return ser.update(id, category);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        ser.delete(id);
     }
 }

@@ -26,10 +26,10 @@ public class TicketCategoryServiceImpl implements TicketCategoryService {
     }
 
     @Override
-    public String userDelete(Long id) {
-        used.deleteById(id);
-        return "Deleted successfully";
+    public void delete(Long id) {
+    categories.removeIf(c -> c.getId().equals(id));
     }
+
 
     @Override
     public TicketCategory getUser(Long id) {
