@@ -8,7 +8,7 @@ public interface TicketCategoryService {
 
     TicketCategory getCategory(Long id);
 
-    String userDelete(Long id);
+    String ticketcategoryDelete(Long id);
 
-    TicketCategory userUpdate(Long id, User user);
+    TicketCategory ticketcategoryUpdate(Long id, TicketCategory categoryv);
 }
