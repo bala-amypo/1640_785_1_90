@@ -1,17 +1,17 @@
 package com.example.demo.service;
 
 import java.util.List;
-import com.example.demo.model.DuplicateRule;
+import com.example.demo.model.DuplicateDetectionLog;
 
 public interface DuplicateDetectionLogService {
 
-    DuplicateRule registerUser4(DuplicateRule user);
+    DuplicateDetectionLog registerUser4(DuplicateDetectionLog user);
 
-    List<DuplicateRule> getAllUsers4();
+    List<DuplicateDetectionLog> getAllUsers4();
 
-    DuplicateRule getUser4(Long id);
+    DuplicateDetectionLog getUser4(Long id);
 
     String userDelete4(Long id);
 
-    DuplicateRule userUpdate4(Long id,DuplicateRule user);
+    DuplicateDetectionLog userUpdate4(Long id,DuplicateDetectionLog user);
 }
