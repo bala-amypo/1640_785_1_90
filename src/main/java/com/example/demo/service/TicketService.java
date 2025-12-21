@@ -5,7 +5,7 @@ import com.example.demo.model.Ticket;
 
 public interface TicketService {
 
-    TicketCategory registerUser2(Ticket user);
+    Ticket registerUser2(Ticket user);
 
     List<Ticket> getAllUsers2();
 
