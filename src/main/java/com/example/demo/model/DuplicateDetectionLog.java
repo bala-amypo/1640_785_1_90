@@ -20,7 +20,7 @@ public class DuplicateDetectionLog {
     
 
     @Column(name = "match_score", nullable = false)
-    private Double matchScore; // must be >= 0
+    private Double matchScore; 
 
     @Column(name = "detected_at", nullable = false, updatable = false)
     private LocalDateTime detectedAt;
