@@ -1,14 +1,17 @@
-// import java.util.List;
+package com.example.demo.service;
 
-// public interface DuplicateRuleService {
+import java.util.List;
+import com.example.demo.model.DuplicateRule;
 
-//     DuplicateRule createRule(DuplicateRule rule);
+public interface UserService {
 
-//     List<DuplicateRule> getAllRules();
+    DuplicateRule registerUser3(DuplicateRule user);
 
-//     DuplicateRule getRule(Long id);
+    List<DuplicateRule> getAllUsers3();
 
-//     String duplicateruleDelete(Long id);
+    DuplicateRule getUser3(Long id);
 
-//     User duplicateruleUpdate(Long id, DuplicateRule rule);
-// }
+    String userDelete3(Long id);
+
+    DuplicateRule userUpdate3(Long id,DuplicateRule user);
+}
