@@ -1,14 +1,17 @@
+package com.example.demo.service;
+
 import java.util.List;
+import com.example.demo.model.User;
 
-public interface TicketCategoryService {
+public interface UserService {
 
-    TicketCategory createCategory(Category category);
+    User registerUser1(User user);
 
-    List<TicketCategory> getAllCategories();
+    List<User> getAllUsers1();
 
-    TicketCategory getCategory(Long id);
+    User getUser1(Long id);
 
-    String categoryDelete(Long id);
+    String userDelete1(Long id);
 
-    TicketCategory categoryUpdate(Long id, Category category);
+    User userUpdate1(Long id, User user);
 }

@@ -5,43 +5,44 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.TicketCategory;
-import com.example.demo.repository.TicketCategoryRepository;
+import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.TicketCategoryService;
 
 @Service
-public class TicketCategoryServiceImpl implements CategoryService {
+public class TicketCategoryServiceImpl implements UserService {
 
     @Autowired
-    private TicketCategoryRepository categoryRepository;
+    private UserRepository used;
 
     @Override
-    public TicketCategory createCategory(Category category) {
-        return categoryRepository.save(category);
+    public User registerUser1(User user) {
+        return used.save(user);
     }
 
     @Override
-    public List<TicketCategory> getAllCategories() {
-        return categoryRepository.findAll();
+    public List<User> getAllUsers1() {
+        return used.findAll();
     }
 
     @Override
-    public TicketCategory getCategory(Long id) {
-        return categoryRepository.findById(id).orElse(null);
+    public String userDelete1(Long id) {
+        used.deleteById(id);
+        return "Deleted successfully";
     }
 
     @Override
-    public String deleteCategory(Long id) {
-        categoryRepository.deleteById(id);
-        return "Category deleted successfully";
+    public User getUser1(Long id) {
+        return used.findById(id).orElse(null);
     }
 
     @Override
-    public TicketCategory updateCategory(Long id, Category category) {
-        if (categoryRepository.existsById(id)) {
-            category.setId(id);
-            return categoryRepository.save(category);
+    public User userUpdate1(Long id, User user) {
+        if (used.existsById(id)) {
+            user.setId(id);
+            return used.save(user);
         }
         return null;
     }
 }
+
