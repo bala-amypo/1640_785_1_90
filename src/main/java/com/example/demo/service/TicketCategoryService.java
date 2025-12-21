@@ -3,7 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 import com.example.demo.model.TicketCategory;
 
-public interface UserService {
+public interface TicketCategoryService {
 
    TicketCategory registerUser(TicketCategory user);
 
