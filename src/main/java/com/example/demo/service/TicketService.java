@@ -1,16 +1,16 @@
-import java.util.List;
+// import java.util.List;
 
-public interface TicketService {
+// public interface TicketService {
 
-    Ticket createTicket(Long userId, Long categoryId, Ticket ticket);
+//     Ticket createTicket(Long userId, Long categoryId, Ticket ticket);
 
-    Ticket getTicket(Long ticketId);
+//     Ticket getTicket(Long ticketId);
 
-    List<Ticket> getTicketsByUser(Long userId);
+//     List<Ticket> getTicketsByUser(Long userId);
 
-    List<Ticket> getAllTickets();
+//     List<Ticket> getAllTickets();
      
-     String ticketDelete(Long id);
+//      String ticketDelete(Long id);
 
-    User ticketUpdate(Long id, Ticket ticket);
-}
+//     User ticketUpdate(Long id, Ticket ticket);
+// }

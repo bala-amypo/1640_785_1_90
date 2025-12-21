@@ -1,14 +1,14 @@
-import java.util.List;
+// import java.util.List;
 
-public interface DuplicateDetectionLogService {
+// public interface DuplicateDetectionLogService {
 
-    List<DuplicateDetectionLog> detectDuplicates(Long ticketId);
+//     List<DuplicateDetectionLog> detectDuplicates(Long ticketId);
 
-    List<DuplicateDetectionLog> getLogsForTicket(Long ticketId);
+//     List<DuplicateDetectionLog> getLogsForTicket(Long ticketId);
 
-    DuplicateDetectionLog getLog(Long id);
+//     DuplicateDetectionLog getLog(Long id);
 
-    String duplicatedetectionlogDelete(Long id);
+//     String duplicatedetectionlogDelete(Long id);
 
-    User duplicatedetedtionlogUpdate(Long id,DuplicateDetectionLog Log );
-}
+//     User duplicatedetedtionlogUpdate(Long id,DuplicateDetectionLog Log );
+// }

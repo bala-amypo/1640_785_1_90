@@ -1,14 +1,14 @@
-import java.util.List;
+// import java.util.List;
 
-public interface DuplicateRuleService {
+// public interface DuplicateRuleService {
 
-    DuplicateRule createRule(DuplicateRule rule);
+//     DuplicateRule createRule(DuplicateRule rule);
 
-    List<DuplicateRule> getAllRules();
+//     List<DuplicateRule> getAllRules();
 
-    DuplicateRule getRule(Long id);
+//     DuplicateRule getRule(Long id);
 
-    String duplicateruleDelete(Long id);
+//     String duplicateruleDelete(Long id);
 
-    User duplicateruleUpdate(Long id, DuplicateRule rule);
-}
+//     User duplicateruleUpdate(Long id, DuplicateRule rule);
+// }
