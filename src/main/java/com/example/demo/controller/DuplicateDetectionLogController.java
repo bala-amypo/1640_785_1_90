@@ -9,7 +9,7 @@ import com.example.demo.model.DuplicateDetectionLog;
 import com.example.demo.service.DuplicateDetectionLogService;
 
 @RestController
-@RequestMapping("/duplicatedetectionrule")
+@RequestMapping("/duplicatedetectionlog")
 public class DuplicateDetectionLogController {
 
     @Autowired
