@@ -33,7 +33,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket getUser2(Long id) {
-      return used.findById(id).orElseThrow(()->new NotFoundException("Not Found"));
+        return used.findById(id).orElse(null);
     }
 
     @Override
