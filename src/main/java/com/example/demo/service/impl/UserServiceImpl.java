@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
@@ -33,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(Long id) {
-        return used.findById(id).orElse(null);
+        return used.findById(id).orElseThrow(()->new NotFoundException("Not Found"));
     }
 
     @Override
