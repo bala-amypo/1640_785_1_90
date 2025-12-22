@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 @RestControllerAdvice
 public class GlobalException{
 
-    @ExceptionHandler(ValidationException.class)
+    @GlobalExceptionHandler(ValidationException.class)
     public ResponseEntity<String> handleValidationException(ValidationException ex){
         return new ResponseEntity<String>(ex.getMessage(),HttpStatus.BAD_GATEWAY);
     }
