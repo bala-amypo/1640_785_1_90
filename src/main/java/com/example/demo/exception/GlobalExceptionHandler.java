@@ -10,7 +10,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<String> handleNotFound(NotFoundException ex) {
-      return new ResponseEntity<String>(ex.getMessae(),HttpStatus.Not_Found);
+      return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
               
     }
 
