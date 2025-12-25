@@ -50,18 +50,18 @@ package com.example.demo.service.impl;
 
 import com.example.demo.model.*;
 import com.example.demo.repository.*;
-import com.example.demo.service.DuplicateDetectionService;
+import com.example.demo.service.DuplicateDetectionLogService;
 import com.example.demo.util.TextSimilarityUtil;
 
 import java.util.*;
 
-public class DuplicateDetectionServiceImpl implements DuplicateDetectionService {
+public class DuplicateDetectionLogServiceImpl implements DuplicateDetectionLogService {
 
     private final TicketRepository ticketRepo;
     private final DuplicateRuleRepository ruleRepo;
     private final DuplicateDetectionLogRepository logRepo;
 
-    public DuplicateDetectionServiceImpl(TicketRepository t, DuplicateRuleRepository r, DuplicateDetectionLogRepository l) {
+    public DuplicateDetectionLogServiceImpl(TicketRepository t, DuplicateRuleRepository r, DuplicateDetectionLogRepository l) {
         this.ticketRepo = t;
         this.ruleRepo = r;
         this.logRepo = l;
