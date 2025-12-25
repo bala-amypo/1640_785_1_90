@@ -56,6 +56,7 @@ import com.example.demo.service.UserService;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+
     private final UserRepository repo;
 
     public UserServiceImpl(UserRepository repo) {
@@ -77,3 +78,4 @@ public class UserServiceImpl implements UserService {
         return repo.findAll();
     }
 }
+
