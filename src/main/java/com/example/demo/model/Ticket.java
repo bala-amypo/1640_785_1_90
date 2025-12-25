@@ -1,44 +1,78 @@
-package com.example.demo.model;
+// package com.example.demo.model;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+// import jakarta.persistence.*;
+// import lombok.Getter;
+// import lombok.NoArgsConstructor;
+// import lombok.Setter;
 
-import java.time.LocalDateTime;
-import java.util.List;
+// import java.time.LocalDateTime;
+// import java.util.List;
 
-@Entity
-@Table(name = "tickets")
-@Getter
-@Setter
-@NoArgsConstructor
-public class Ticket {
+// @Entity
+// @Table(name = "tickets")
+// @Getter
+// @Setter
+// @NoArgsConstructor
+// public class Ticket {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
 
-    @Column(nullable = false)
-    private String subject;
+//     @Column(nullable = false)
+//     private String subject;
 
-    @Column(nullable = false, length = 1000)
-    private String description;
+//     @Column(nullable = false, length = 1000)
+//     private String description;
 
-    @Column(nullable = false)
-    private String status = "OPEN";
+//     @Column(nullable = false)
+//     private String status = "OPEN";
 
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
+//     @Column(nullable = false)
+//     private LocalDateTime createdAt;
 
     
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        if (this.status == null) {
-            this.status = "OPEN";
-        }
-    }
+//     @PrePersist
+//     protected void onCreate() {
+//         this.createdAt = LocalDateTime.now();
+//         if (this.status == null) {
+//             this.status = "OPEN";
+//         }
+//     }
+// }
+
+package com.example.demo.model;
+
+import java.time.LocalDateTime;
+
+public class Ticket {
+    private Long id;
+    private String subject;
+    private String description;
+    private String status = "OPEN";
+    private User user;
+    private TicketCategory category;
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getSubject() { return subject; }
+    public void setSubject(String subject) { this.subject = subject; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+
+    public TicketCategory getCategory() { return category; }
+    public void setCategory(TicketCategory category) { this.category = category; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
 }
 

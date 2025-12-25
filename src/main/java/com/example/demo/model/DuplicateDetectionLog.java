@@ -1,33 +1,33 @@
-package com.example.demo.model;
+// package com.example.demo.model;
 
-import jakarta.persistence.*;
-import lombok.*;
+// import jakarta.persistence.*;
+// import lombok.*;
 
-import java.time.LocalDateTime;
+// import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "duplicate_detection_logs")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-public class DuplicateDetectionLog {
+// @Entity
+// @Table(name = "duplicate_detection_logs")
+// @Getter
+// @Setter
+// @NoArgsConstructor
+// @AllArgsConstructor
+// @ToString
+// public class DuplicateDetectionLog {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
     
 
-    @Column(name = "match_score", nullable = false)
-    private Double matchScore; 
+//     @Column(name = "match_score", nullable = false)
+//     private Double matchScore; 
 
-    @Column(name = "detected_at", nullable = false, updatable = false)
-    private LocalDateTime detectedAt;
+//     @Column(name = "detected_at", nullable = false, updatable = false)
+//     private LocalDateTime detectedAt;
 
-    @PrePersist
-    protected void onDetect() {
-        this.detectedAt = LocalDateTime.now();
-    }
-}
+//     @PrePersist
+//     protected void onDetect() {
+//         this.detectedAt = LocalDateTime.now();
+//     }
+// }
 
