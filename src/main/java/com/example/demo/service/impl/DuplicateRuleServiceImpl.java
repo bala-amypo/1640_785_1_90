@@ -1,48 +1,73 @@
+// package com.example.demo.service.impl;
+
+// import java.util.List;
+
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Service;
+
+// import com.example.demo.model.DuplicateRule;
+// import com.example.demo.repository.DuplicateRuleRepository;
+// import com.example.demo.service.DuplicateRuleService;
+
+// @Service
+// public class DuplicateRuleServiceImpl implements DuplicateRuleService {
+
+//     @Autowired
+//     private DuplicateRuleRepository used;
+
+//     @Override
+//     public DuplicateRule registerUser3(DuplicateRule user) {
+//         return used.save(user);
+//     }
+
+//     @Override
+//     public List<DuplicateRule> getAllUsers3() {
+//         return used.findAll();
+//     }
+
+//     @Override
+//     public String userDelete3(Long id) {
+//         used.deleteById(id);
+//         return "Deleted successfully";
+//     }
+
+//     @Override
+//     public DuplicateRule getUser3(Long id) {
+//         return used.findById(id).orElse(null);
+//     }
+
+//     @Override
+//     public DuplicateRule userUpdate3(Long id, DuplicateRule user) {
+//         if (used.existsById(id)) {
+//             user.setId(id);
+//             return used.save(user);
+//         }
+//         return null;
+//     }
+// }
+
 package com.example.demo.service.impl;
-
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.example.demo.model.DuplicateRule;
 import com.example.demo.repository.DuplicateRuleRepository;
 import com.example.demo.service.DuplicateRuleService;
 
-@Service
 public class DuplicateRuleServiceImpl implements DuplicateRuleService {
 
-    @Autowired
-    private DuplicateRuleRepository used;
+    private final DuplicateRuleRepository repo;
 
-    @Override
-    public DuplicateRule registerUser3(DuplicateRule user) {
-        return used.save(user);
+    public DuplicateRuleServiceImpl(DuplicateRuleRepository repo) {
+        this.repo = repo;
     }
 
-    @Override
-    public List<DuplicateRule> getAllUsers3() {
-        return used.findAll();
-    }
-
-    @Override
-    public String userDelete3(Long id) {
-        used.deleteById(id);
-        return "Deleted successfully";
-    }
-
-    @Override
-    public DuplicateRule getUser3(Long id) {
-        return used.findById(id).orElse(null);
-    }
-
-    @Override
-    public DuplicateRule userUpdate3(Long id, DuplicateRule user) {
-        if (used.existsById(id)) {
-            user.setId(id);
-            return used.save(user);
+    public DuplicateRule createRule(DuplicateRule rule) {
+        if (repo.findByRuleName(rule.getRuleName()).isPresent()) {
+            throw new RuntimeException("Rule exists");
         }
-        return null;
+        return repo.save(rule);
+    }
+
+    public DuplicateRule getRule(Long id) {
+        return repo.findById(id).orElseThrow(() -> new RuntimeException("Rule not found"));
     }
 }
-
