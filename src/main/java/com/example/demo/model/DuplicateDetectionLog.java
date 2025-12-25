@@ -31,3 +31,32 @@
 //     }
 // }
 
+package com.example.demo.model;
+
+import java.time.LocalDateTime;
+
+public class DuplicateDetectionLog {
+    private Ticket ticket;
+    private Ticket matchedTicket;
+    private double matchScore;
+    private LocalDateTime detectedAt = LocalDateTime.now();
+
+    public DuplicateDetectionLog() {}
+
+    public DuplicateDetectionLog(Ticket ticket, Ticket matchedTicket, double matchScore) {
+        this.ticket = ticket;
+        this.matchedTicket = matchedTicket;
+        this.matchScore = matchScore;
+    }
+
+    public Ticket getTicket() { return ticket; }
+    public void setTicket(Ticket ticket) { this.ticket = ticket; }
+
+    public Ticket getMatchedTicket() { return matchedTicket; }
+    public void setMatchedTicket(Ticket matchedTicket) { this.matchedTicket = matchedTicket; }
+
+    public double getMatchScore() { return matchScore; }
+    public void setMatchScore(double matchScore) { this.matchScore = matchScore; }
+
+    public LocalDateTime getDetectedAt() { return detectedAt; }
+}

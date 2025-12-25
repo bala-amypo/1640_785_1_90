@@ -1,10 +1,15 @@
-package com.example.demo.repository;
+// package com.example.demo.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import com.example.demo.model.DuplicateDetectionLog;
+// import org.springframework.data.jpa.repository.JpaRepository;
+// import org.springframework.stereotype.Repository;
+// import com.example.demo.model.DuplicateDetectionLog;
 
-@Repository
-public interface DuplicateDetectionLogRepository
-        extends JpaRepository<DuplicateDetectionLog, Long> {
+// @Repository
+// public interface DuplicateDetectionLogRepository
+//         extends JpaRepository<DuplicateDetectionLog, Long> {
+// }
+
+public interface DuplicateDetectionLogRepository {
+    List<DuplicateDetectionLog> findByTicket_Id(Long ticketId);
+    DuplicateDetectionLog save(DuplicateDetectionLog log);
 }
