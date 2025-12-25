@@ -15,6 +15,7 @@ import com.example.demo.model.Ticket;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface TicketRepository {
 
     Optional<Ticket> findById(Long id);

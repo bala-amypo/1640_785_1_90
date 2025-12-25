@@ -14,6 +14,7 @@ package com.example.demo.repository;
 import com.example.demo.model.DuplicateDetectionLog;
 import java.util.List;
 
+@Repository
 public interface DuplicateDetectionLogRepository {
 
     DuplicateDetectionLog save(DuplicateDetectionLog log);

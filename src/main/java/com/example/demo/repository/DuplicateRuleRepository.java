@@ -15,6 +15,8 @@ import com.example.demo.model.DuplicateRule;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
+
 public interface DuplicateRuleRepository {
 
     Optional<DuplicateRule> findById(Long id);

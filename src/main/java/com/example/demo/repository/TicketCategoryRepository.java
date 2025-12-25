@@ -14,6 +14,7 @@ package com.example.demo.repository;
 import com.example.demo.model.TicketCategory;
 import java.util.Optional;
 
+@Repository
 public interface TicketCategoryRepository {
 
     Optional<TicketCategory> findById(Long id);

@@ -14,6 +14,7 @@ package com.example.demo.repository;
 import com.example.demo.model.*;
 import java.util.*;
 
+@Repository
 public interface UserRepository {
     Optional<User> findById(Long id);
     Optional<User> findByEmail(String email);
