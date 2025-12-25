@@ -9,12 +9,21 @@
 //         extends JpaRepository<Ticket, Long> {
 // }
 
+package com.example.demo.repository;
+
+import com.example.demo.model.Ticket;
+import java.util.List;
+import java.util.Optional;
+
 public interface TicketRepository {
+
     Optional<Ticket> findById(Long id);
+
     List<Ticket> findAll();
+
     List<Ticket> findByStatus(String status);
+
     List<Ticket> findByUser_Id(Long userId);
-    List<Ticket> findByCategory_Id(Long categoryId);
-    List<Ticket> findBySubjectContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String s1, String s2);
+
     Ticket save(Ticket ticket);
 }
