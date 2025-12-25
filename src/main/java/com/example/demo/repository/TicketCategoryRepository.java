@@ -18,5 +18,7 @@ public interface TicketCategoryRepository {
 
     Optional<TicketCategory> findById(Long id);
 
+    boolean existsByCategoryName(String categoryName); // ✅ ADD THIS
+
     TicketCategory save(TicketCategory category);
 }

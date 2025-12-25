@@ -19,8 +19,9 @@ public interface DuplicateRuleRepository {
 
     Optional<DuplicateRule> findById(Long id);
 
+    Optional<DuplicateRule> findByRuleName(String ruleName); // ✅ ADD THIS
+
     List<DuplicateRule> findAll();
 
     DuplicateRule save(DuplicateRule rule);
 }
-
