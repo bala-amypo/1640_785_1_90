@@ -50,49 +50,45 @@ package com.example.demo.service.impl;
 
 import com.example.demo.model.*;
 import com.example.demo.repository.*;
-import com.example.demo.service.DuplicateDetectionLogService;
+import com.example.demo.service.DuplicateDetectionService;
 import com.example.demo.util.TextSimilarityUtil;
 
 import java.util.*;
 
-public class DuplicateDetectionLogServiceImpl implements DuplicateDetectionLogService {
+public class DuplicateDetectionServiceImpl implements DuplicateDetectionService {
 
     private final TicketRepository ticketRepo;
     private final DuplicateRuleRepository ruleRepo;
     private final DuplicateDetectionLogRepository logRepo;
 
-    public DuplicateDetectionLogServiceImpl(TicketRepository t, DuplicateRuleRepository r, DuplicateDetectionLogRepository l) {
+    public DuplicateDetectionServiceImpl(
+            TicketRepository t,
+            DuplicateRuleRepository r,
+            DuplicateDetectionLogRepository l) {
         this.ticketRepo = t;
         this.ruleRepo = r;
         this.logRepo = l;
     }
 
+    @Override
     public List<DuplicateDetectionLog> detectDuplicates(Long ticketId) {
         Ticket base = ticketRepo.findById(ticketId).orElseThrow();
         List<DuplicateRule> rules = ruleRepo.findAll();
-        List<Ticket> openTickets = ticketRepo.findByStatus("OPEN");
+        List<Ticket> open = ticketRepo.findByStatus("OPEN");
 
         List<DuplicateDetectionLog> result = new ArrayList<>();
 
-        for (Ticket other : openTickets) {
-            if (other == base) continue;
+        for (Ticket other : open) {
+            if (other.getId().equals(base.getId())) continue;
 
             for (DuplicateRule rule : rules) {
-                double score = 0;
-
-                if ("EXACT_MATCH".equals(rule.getMatchType())) {
-                    if (base.getSubject() != null &&
-                        base.getSubject().equalsIgnoreCase(other.getSubject())) {
-                        score = 1.0;
-                    }
-                } else {
-                    score = TextSimilarityUtil.similarity(
-                            String.valueOf(base.getSubject()) + " " + String.valueOf(base.getDescription()),
-                            String.valueOf(other.getSubject()) + " " + String.valueOf(other.getDescription()));
-                }
+                double score = TextSimilarityUtil.similarity(
+                        base.getSubject() + " " + base.getDescription(),
+                        other.getSubject() + " " + other.getDescription());
 
                 if (score >= rule.getThreshold()) {
-                    DuplicateDetectionLog log = new DuplicateDetectionLog(base, other, score);
+                    DuplicateDetectionLog log =
+                            new DuplicateDetectionLog(base, other, score);
                     logRepo.save(log);
                     result.add(log);
                 }
@@ -101,6 +97,7 @@ public class DuplicateDetectionLogServiceImpl implements DuplicateDetectionLogSe
         return result;
     }
 
+    @Override
     public List<DuplicateDetectionLog> getLogsForTicket(Long ticketId) {
         return logRepo.findByTicket_Id(ticketId);
     }
