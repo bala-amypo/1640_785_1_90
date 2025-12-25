@@ -19,7 +19,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.DuplicateRule;
-
+@Service
 public interface DuplicateRuleService {
 
     DuplicateRule createRule(DuplicateRule rule);
