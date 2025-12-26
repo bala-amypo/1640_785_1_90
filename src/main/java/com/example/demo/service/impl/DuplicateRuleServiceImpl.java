@@ -45,7 +45,6 @@
 //         return null;
 //     }
 // }
-
 package com.example.demo.service.impl;
 
 import com.example.demo.model.DuplicateRule;
@@ -54,20 +53,22 @@ import com.example.demo.service.DuplicateRuleService;
 
 public class DuplicateRuleServiceImpl implements DuplicateRuleService {
 
-    private final DuplicateRuleRepository repo;
+    private final DuplicateRuleRepository ruleRepository;
 
-    public DuplicateRuleServiceImpl(DuplicateRuleRepository repo) {
-        this.repo = repo;
+    public DuplicateRuleServiceImpl(DuplicateRuleRepository ruleRepository) {
+        this.ruleRepository = ruleRepository;
     }
 
+    @Override
     public DuplicateRule createRule(DuplicateRule rule) {
-        if (repo.findByRuleName(rule.getRuleName()).isPresent()) {
-            throw new RuntimeException("Rule exists");
-        }
-        return repo.save(rule);
+        ruleRepository.findByRuleName(rule.getRuleName())
+                .ifPresent(r -> { throw new RuntimeException("exists"); });
+        return ruleRepository.save(rule);
     }
 
+    @Override
     public DuplicateRule getRule(Long id) {
-        return repo.findById(id).orElseThrow(() -> new RuntimeException("Rule not found"));
+        return ruleRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("rule not found"));
     }
 }

@@ -46,36 +46,32 @@
 //         return null;
 //     }
 // }
-
 package com.example.demo.service.impl;
 
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
-
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository repo;
+    private final UserRepository userRepository;
+    public UserServiceImpl(UserRepository userRepository) { this.userRepository = userRepository; }
 
-    public UserServiceImpl(UserRepository repo) {
-        this.repo = repo;
-    }
-
+    @Override
     public User registerUser(User user) {
-        if (repo.existsByEmail(user.getEmail())) {
-            throw new RuntimeException("Email already exists");
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("email already used");
         }
-        return repo.save(user);
+        return userRepository.save(user);
     }
 
+    @Override
     public User getUser(Long id) {
-        return repo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("user not found"));
     }
 
-    public List<User> getAllUsers() {
-        return repo.findAll();
-    }
+    @Override
+    public List<User> getAllUsers() { return userRepository.findAll(); }
 }
-

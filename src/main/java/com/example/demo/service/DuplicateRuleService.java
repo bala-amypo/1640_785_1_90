@@ -15,14 +15,12 @@
 
 //     DuplicateRule userUpdate3(Long id,DuplicateRule user);
 // }package com.example.demo.service;
-
 package com.example.demo.service;
 
 import com.example.demo.model.DuplicateRule;
-@Service
+
 public interface DuplicateRuleService {
-
     DuplicateRule createRule(DuplicateRule rule);
-
     DuplicateRule getRule(Long id);
 }
+

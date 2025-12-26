@@ -45,7 +45,6 @@
 //         return null;
 //     }
 // }
-
 package com.example.demo.service.impl;
 
 import com.example.demo.model.TicketCategory;
@@ -54,20 +53,23 @@ import com.example.demo.service.TicketCategoryService;
 
 public class TicketCategoryServiceImpl implements TicketCategoryService {
 
-    private final TicketCategoryRepository repo;
+    private final TicketCategoryRepository categoryRepository;
 
-    public TicketCategoryServiceImpl(TicketCategoryRepository repo) {
-        this.repo = repo;
+    public TicketCategoryServiceImpl(TicketCategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
+    @Override
     public TicketCategory createCategory(TicketCategory category) {
-        if (repo.existsByCategoryName(category.getCategoryName())) {
-            throw new RuntimeException("Category exists");
+        if (categoryRepository.existsByCategoryName(category.getCategoryName())) {
+            throw new RuntimeException("category already exists");
         }
-        return repo.save(category);
+        return categoryRepository.save(category);
     }
 
+    @Override
     public TicketCategory getCategory(Long id) {
-        return repo.findById(id).orElseThrow(() -> new RuntimeException("Category not found"));
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("category not found"));
     }
 }
