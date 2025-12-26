@@ -12,18 +12,9 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.DuplicateRule;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
-@Repository
-
-public interface DuplicateRuleRepository {
-
-    Optional<DuplicateRule> findById(Long id);
-
-    Optional<DuplicateRule> findByRuleName(String ruleName); // ✅ ADD THIS
-
-    List<DuplicateRule> findAll();
-
-    DuplicateRule save(DuplicateRule rule);
+public interface DuplicateRuleRepository extends JpaRepository<DuplicateRule, Long> {
+    Optional<DuplicateRule> findByRuleName(String ruleName);
 }

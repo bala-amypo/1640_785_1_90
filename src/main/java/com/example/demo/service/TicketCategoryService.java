@@ -15,11 +15,4 @@
 
 //     TicketCategory userUpdate1(Long id, TicketCategory user);
 // }
-package com.example.demo.service;
-
-import com.example.demo.model.TicketCategory;
-@Service
-public interface TicketCategoryService {
-    TicketCategory createCategory(TicketCategory category);
-    TicketCategory getCategory(Long id);
-}
+V

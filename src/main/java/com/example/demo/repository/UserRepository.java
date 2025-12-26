@@ -11,14 +11,11 @@
 
 package com.example.demo.repository;
 
-import com.example.demo.model.*;
-import java.util.*;
+import com.example.demo.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-@Repository
-public interface UserRepository {
-    Optional<User> findById(Long id);
-    Optional<User> findByEmail(String email);
+public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);
-    List<User> findAll();
-    User save(User user);
+    Optional<User> findByEmail(String email);
 }

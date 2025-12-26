@@ -45,16 +45,20 @@
 //         this.createdAt = LocalDateTime.now();
 //     }
 // }
-
 package com.example.demo.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class DuplicateRule {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String ruleName;
     private String matchType;
     private double threshold;
 
-    public DuplicateRule() {}
+    public DuplicateRule() { }
 
     public DuplicateRule(String ruleName, String matchType, double threshold) {
         this.ruleName = ruleName;
