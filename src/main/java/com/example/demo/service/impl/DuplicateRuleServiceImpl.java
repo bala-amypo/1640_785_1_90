@@ -44,13 +44,44 @@
 //         }
 //         return null;
 //     }
+// 
+// package com.example.demo.service.impl;
+
+// import com.example.demo.model.DuplicateRule;
+// import com.example.demo.repository.DuplicateRuleRepository;
+// import com.example.demo.service.DuplicateRuleService;
+
+
+// public class DuplicateRuleServiceImpl implements DuplicateRuleService {
+
+//     private final DuplicateRuleRepository ruleRepository;
+
+//     public DuplicateRuleServiceImpl(DuplicateRuleRepository ruleRepository) {
+//         this.ruleRepository = ruleRepository;
+//     }
+
+//     @Override
+//     public DuplicateRule createRule(DuplicateRule rule) {
+//         ruleRepository.findByRuleName(rule.getRuleName())
+//                 .ifPresent(r -> { throw new RuntimeException("exists"); });
+//         return ruleRepository.save(rule);
+//     }
+
+//     @Override
+//     public DuplicateRule getRule(Long id) {
+//         return ruleRepository.findById(id)
+//                 .orElseThrow(() -> new RuntimeException("rule not found"));
+//     }
 // }
+
 package com.example.demo.service.impl;
 
 import com.example.demo.model.DuplicateRule;
 import com.example.demo.repository.DuplicateRuleRepository;
 import com.example.demo.service.DuplicateRuleService;
+import org.springframework.stereotype.Service;  // Add this import
 
+@Service  // ← ADD THIS - Makes it a Spring bean
 public class DuplicateRuleServiceImpl implements DuplicateRuleService {
 
     private final DuplicateRuleRepository ruleRepository;
@@ -59,16 +90,16 @@ public class DuplicateRuleServiceImpl implements DuplicateRuleService {
         this.ruleRepository = ruleRepository;
     }
 
-    @Override
+    @Override  // ← ADD THESE for clarity
     public DuplicateRule createRule(DuplicateRule rule) {
         ruleRepository.findByRuleName(rule.getRuleName())
-                .ifPresent(r -> { throw new RuntimeException("exists"); });
+                .ifPresent(r -> { throw new RuntimeException("Rule already exists"); });
         return ruleRepository.save(rule);
     }
 
     @Override
     public DuplicateRule getRule(Long id) {
         return ruleRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("rule not found"));
+                .orElseThrow(() -> new RuntimeException("Rule not found"));
     }
 }
