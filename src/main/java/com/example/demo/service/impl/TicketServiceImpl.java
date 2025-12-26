@@ -44,8 +44,7 @@
 //         }
 //         return null;
 //     }
-// }
-package com.example.demo.service.impl;
+// }package com.example.demo.service.impl;
 
 import com.example.demo.model.Ticket;
 import com.example.demo.model.TicketCategory;
@@ -81,6 +80,7 @@ public class TicketServiceImpl implements TicketService {
         if (ticket.getDescription() == null || ticket.getDescription().length() < 10) {
             throw new RuntimeException("description too short");
         }
+
         ticket.setUser(user);
         ticket.setCategory(category);
         return ticketRepository.save(ticket);
@@ -93,32 +93,12 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<Ticket> getAllTickets() { return ticketRepository.findAll(); }
+    public List<Ticket> getAllTickets() {
+        return ticketRepository.findAll();
+    }
 
     @Override
     public List<Ticket> getTicketsByUser(Long userId) {
         return ticketRepository.findByUser_Id(userId);
-    }
-}
-
-    public Ticket createTicket(Long userId, Long categoryId, Ticket ticket) {
-        if (ticket.getDescription() == null || ticket.getDescription().length() < 10) {
-            throw new RuntimeException("Description too short");
-        }
-        ticket.setUser(userRepo.findById(userId).orElseThrow());
-        ticket.setCategory(categoryRepo.findById(categoryId).orElseThrow());
-        return ticketRepo.save(ticket);
-    }
-
-    public Ticket getTicket(Long id) {
-        return ticketRepo.findById(id).orElseThrow(() -> new RuntimeException("Ticket not found"));
-    }
-
-    public List<Ticket> getAllTickets() {
-        return ticketRepo.findAll();
-    }
-
-    public List<Ticket> getTicketsByUser(Long userId) {
-        return ticketRepo.findByUser_Id(userId);
     }
 }
