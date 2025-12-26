@@ -47,19 +47,28 @@
 
 package com.example.demo.model;
 
-import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import java.time.Instant;
 
+@Entity
 public class TicketCategory {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String categoryName;
     private String description;
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private Instant createdAt = Instant.now();
 
-    public TicketCategory() {}
+    public TicketCategory() { }
 
     public TicketCategory(String categoryName, String description) {
         this.categoryName = categoryName;
         this.description = description;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (createdAt == null) createdAt = Instant.now();
     }
 
     public Long getId() { return id; }
@@ -71,5 +80,6 @@ public class TicketCategory {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
+    public Instant getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
 }
