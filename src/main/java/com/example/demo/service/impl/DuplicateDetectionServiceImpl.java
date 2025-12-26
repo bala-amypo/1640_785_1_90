@@ -55,10 +55,12 @@ import com.example.demo.repository.DuplicateRuleRepository;
 import com.example.demo.repository.TicketRepository;
 import com.example.demo.service.DuplicateDetectionService;
 import com.example.demo.util.TextSimilarityUtil;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service   // IMPORTANT: makes this class a Spring bean
 public class DuplicateDetectionServiceImpl implements DuplicateDetectionService {
 
     private final TicketRepository ticketRepository;
@@ -82,18 +84,15 @@ public class DuplicateDetectionServiceImpl implements DuplicateDetectionService 
         List<Ticket> candidates = ticketRepository.findByStatus("OPEN");
 
         List<DuplicateDetectionLog> result = new ArrayList<>();
-
         if (rules.isEmpty() || candidates.isEmpty()) {
             return List.of();
         }
 
         for (Ticket other : candidates) {
-            // skip self
             if (base.getId() != null && other.getId() != null
                     && base.getId().equals(other.getId())) {
                 continue;
             }
-
             for (DuplicateRule rule : rules) {
                 double score = 0.0;
 
@@ -125,7 +124,6 @@ public class DuplicateDetectionServiceImpl implements DuplicateDetectionService 
                 }
             }
         }
-
         return result;
     }
 
