@@ -56,6 +56,8 @@ import com.example.demo.repository.TicketCategoryRepository;
 import com.example.demo.repository.TicketRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.TicketService;
+import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
