@@ -24,11 +24,13 @@
 //     DuplicateRule getRule(Long id);
 // }
 
+
 package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
 
 @Service  // <--- This is the missing piece!
 public class DuplicateRuleService {
-    // your logic here
+    DuplicateRule createRule(DuplicateRule rule);
+    DuplicateRule getRule(Long id);
 }
