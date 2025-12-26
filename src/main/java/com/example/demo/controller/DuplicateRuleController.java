@@ -52,19 +52,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/rules")
 public class DuplicateRuleController {
 
-   private final DuplicateRuleService duplicateRuleService;
+    private final DuplicateRuleService ruleService;
 
-    // Spring uses this constructor to inject the service
-    public DuplicateRuleController(DuplicateRuleService duplicateRuleService) {
-        this.duplicateRuleService = duplicateRuleService;
+    public DuplicateRuleController(DuplicateRuleService ruleService) {
+        this.ruleService = ruleService;
     }
+
     @PostMapping
     public DuplicateRule createRule(@RequestBody DuplicateRule rule) {
-        return duplicateRuleService.createRule(rule);
+        return ruleService.createRule(rule);
     }
 
     @GetMapping("/{id}")
     public DuplicateRule getRule(@PathVariable Long id) {
-        return duplicateRuleService.getRule(id);
+        return ruleService.getRule(id);
     }
 }
