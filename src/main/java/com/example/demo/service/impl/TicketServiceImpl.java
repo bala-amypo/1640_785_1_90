@@ -59,6 +59,7 @@ import com.example.demo.service.TicketService;
 
 import java.util.List;
 
+@Service
 public class TicketServiceImpl implements TicketService {
 
     private final TicketRepository ticketRepository;
