@@ -68,3 +68,5 @@ public class DuplicateRuleController {
         return ruleService.getRule(id);
     }
 }
+
+
