@@ -26,7 +26,7 @@
 
 
 package com.example.demo.service;
-
+import com.example.demo.model.DuplicateRule; // Adjust package name as needed
 import org.springframework.stereotype.Service;
 
 @Service  // <--- This is the missing piece!
