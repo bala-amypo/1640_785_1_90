@@ -29,16 +29,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())  // Disable CSRF for REST API [web:29]
+            .csrf(csrf -> csrf.disable())  // Disable CSRF for REST API and tests
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/register", "/auth/login").permitAll()  // Public auth endpoints
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()  // Swagger access
+                .requestMatchers("/auth/register", "/auth/login").permitAll()
+                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/index.html").permitAll()
                 .requestMatchers("/error").permitAll()
-                .requestMatchers("/demo").permitAll()  // Demo servlet
-                .anyRequest().authenticated()  // All /api/** require JWT
+                .requestMatchers("/demo").permitAll()  // Demo servlet for test cases
+                .requestMatchers("/api/users/register").permitAll()  // Additional registration endpoint
+                .anyRequest().authenticated()
             )
-            .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);  // JWT filter before standard auth
+            .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
