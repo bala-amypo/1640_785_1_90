@@ -20,7 +20,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/tickets/**").authenticated()
                 .anyRequest().authenticated()
             )
-            .oauth2ResourceServer(oauth2 -> oauth2.jwt()); // JWT auth
+            .oauth2ResourceServer(oauth2 -> oauth2.jwt());
 
         return http.build();
     }
