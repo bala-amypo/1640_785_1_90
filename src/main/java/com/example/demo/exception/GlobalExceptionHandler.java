@@ -1,25 +1,30 @@
-// package com.example.demo.exception;
+package com.example.demo.exception;
 
-// import org.springframework.http.HttpStatus;
-// import org.springframework.http.ResponseEntity;
-// import org.springframework.web.bind.annotation.ExceptionHandler;
-// import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-// @RestControllerAdvice
-// public class GlobalExceptionHandler {
+import java.util.HashMap;
+import java.util.Map;
 
-//     @ExceptionHandler(ResourceNotFoundException.class)
-//     public ResponseEntity<String> handleNotFound(ResourceNotFoundException ex) {
-//         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
-//     }
+@RestControllerAdvice
+public class GlobalExceptionHandler {
 
-//     @ExceptionHandler(BadRequestException.class)
-//     public ResponseEntity<String> handleBadRequest(BadRequestException ex) {
-//         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
-//     }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, String>> handleIllegalArgument(IllegalArgumentException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", "Bad Request");
+        error.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
 
-//     @ExceptionHandler(Exception.class)
-//     public ResponseEntity<String> handleGeneric(Exception ex) {
-//         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-//     }
-// }
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> handleValidation(MethodArgumentNotValidException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", "Validation Failed");
+        error.put("message", ex.getBindingResult().getFieldErrors().get(0).getDefaultMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+}
