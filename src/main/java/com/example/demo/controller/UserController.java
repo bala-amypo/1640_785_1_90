@@ -128,8 +128,5 @@ public class UserController {
     public ResponseEntity<User> getOne(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUser(id));
     }
-    if (user.getPassword() == null || user.getPassword().length() < 8) {
-    throw new IllegalArgumentException("Password must be at least 8 characters");
-}
 
 }
