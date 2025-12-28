@@ -108,7 +108,7 @@
             <version>7.8.0</version>
             <scope>test</scope>
         </dependency>
-        <!-- for the purpose of checking -->
+ <!-- for the purpose of checking -->
         <dependency>
     <groupId>io.jsonwebtoken</groupId>
     <artifactId>jjwt-api</artifactId>
@@ -125,6 +125,12 @@
     <version>0.12.3</version>
 </dependency>
 <!-- gubkkmkkkkkkkkkkkkkkkkkkkm -->
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.5.0</version>
+</dependency>
+
     </dependencies>
 
 	<build>
