@@ -11,18 +11,13 @@ public class AuthController {
 
     private final UserService userService;
 
-    public AuthController(UserService userService) {
+    public AuthController(UserService userService) {  // constructor injection
         this.userService = userService;
     }
 
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody User user) {
-        User savedUser = userService.registerUser(user);
-        return ResponseEntity.ok(savedUser);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<String> login() {
-        return ResponseEntity.ok("Login endpoint - implement later");
+        User saved = userService.registerUser(user);
+        return ResponseEntity.ok(saved);
     }
 }
