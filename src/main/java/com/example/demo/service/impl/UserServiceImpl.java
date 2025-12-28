@@ -1,9 +1,43 @@
 
+// package com.example.demo.service.impl;
+
+// import com.example.demo.model.User;
+// import com.example.demo.repository.UserRepository;
+// import com.example.demo.service.UserService;
+// import org.springframework.stereotype.Service;
+
+// import java.util.List;
+
+// @Service
+// public class UserServiceImpl implements UserService {
+
+//     private final UserRepository userRepository;
+//     public UserServiceImpl(UserRepository userRepository) { this.userRepository = userRepository; }
+
+//     @Override
+//     public User registerUser(User user) {
+//         if (userRepository.existsByEmail(user.getEmail())) {
+//             throw new RuntimeException("email already used");
+//         }
+//         return userRepository.save(user);
+//     }
+
+//     @Override
+//     public User getUser(Long id) {
+//         return userRepository.findById(id)
+//                 .orElseThrow(() -> new RuntimeException("user not found"));
+//     }
+
+//     @Override
+//     public List<User> getAllUsers() { return userRepository.findAll(); }
+// }
+
 package com.example.demo.service.impl;
 
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
+import com.example.demo.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +46,21 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    public UserServiceImpl(UserRepository userRepository) { this.userRepository = userRepository; }
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User registerUser(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
-            throw new RuntimeException("email already used");
+            throw new IllegalArgumentException("Email already exists");
+        }
+        if (user.getPassword().length() < 8) {
+            throw new IllegalArgumentException("Password must be at least 8 characters");
+        }
+        if (user.getRole() == null) {
+            user.setRole("USER");
         }
         return userRepository.save(user);
     }
@@ -25,9 +68,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUser(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("user not found"));
+            .orElseThrow(() -> new NotFoundException("User not found"));
     }
 
     @Override
-    public List<User> getAllUsers() { return userRepository.findAll(); }
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 }
