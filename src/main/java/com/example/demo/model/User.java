@@ -1,49 +1,49 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "users")  // ✅ Fixes H2 "user" keyword issue
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     private String fullName;
     private String email;
     private String password;
     private String role;
-    private Instant createdAt = Instant.now();
+    private LocalDateTime createdAt;
 
-    public User() { }
+    // Default constructor
+    public User() {}
 
+    // Parameterized constructor
     public User(String fullName, String email, String password, String role) {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.role = (role != null) ? role : "USER";
+        this.createdAt = LocalDateTime.now();
     }
 
-    @PrePersist
-    public void prePersist() {
-        if (createdAt == null) createdAt = Instant.now();
-        if (role == null) role = "USER";
-    }
-
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-
+    
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
-
+    
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-
+    
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
-
-    public String getRole() { return role == null ? "USER" : role; }
+    
+    public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
-
-    public Instant getCreatedAt() { return createdAt; }
-    public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
+    
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
