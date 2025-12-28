@@ -9,12 +9,11 @@ import java.io.PrintWriter;
 
 @WebServlet("/demo")
 public class DemoServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/plain");
-        PrintWriter out = resp.getWriter();
-        out.print("OK");
-        out.flush();
+        try (PrintWriter out = resp.getWriter()) {
+            out.print("OK");
+        }
     }
 }

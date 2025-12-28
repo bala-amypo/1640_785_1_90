@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUser(Long id) {
         return userRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("User not found"));
+            .orElseThrow(() -> new NotFoundException("User not found"));
     }
 
     @Override
