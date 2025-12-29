@@ -173,6 +173,6 @@ public class UserController {
     @GetMapping("/test")
     @Operation(summary = "Test JWT token")
     public ResponseEntity<String> test() {
-        return ResponseEntity.ok("✅ JWT works! Token is valid.");
+        return ResponseEntity.ok("JWT works! Token is valid.");
     }
 }
