@@ -69,56 +69,104 @@
 
 // // }
 
-package com.example.demo.controller;
+// package com.example.demo.controller;
 
-import com.example.demo.dto.AuthRequest;
-import com.example.demo.dto.AuthResponse;
-import com.example.demo.model.User;
-import com.example.demo.security.JwtUtil;
-import com.example.demo.service.UserService;
+// import com.example.demo.dto.AuthRequest;
+// import com.example.demo.dto.AuthResponse;
+// import com.example.demo.model.User;
+// import com.example.demo.security.JwtUtil;
+// import com.example.demo.service.UserService;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+// import org.springframework.security.crypto.password.PasswordEncoder;
+// import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/users")
-public class UserController {
+// @RestController
+// @RequestMapping("/users")
+// public class UserController {
 
-    private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
+//     private final UserService userService;
+//     private final PasswordEncoder passwordEncoder;
+//     private final JwtUtil jwtUtil;
 
-    public UserController(UserService userService,
-                          PasswordEncoder passwordEncoder,
-                          JwtUtil jwtUtil) {
-        this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
-        this.jwtUtil = jwtUtil;
-    }
+//     public UserController(UserService userService,
+//                           PasswordEncoder passwordEncoder,
+//                           JwtUtil jwtUtil) {
+//         this.userService = userService;
+//         this.passwordEncoder = passwordEncoder;
+//         this.jwtUtil = jwtUtil;
+//     }
 
 
-    @PostMapping("/register")
-    public User register(@RequestBody User user) {
-        return userService.register(user);
-    }
+//     @PostMapping("/register")
+//     public User register(@RequestBody User user) {
+//         return userService.register(user);
+//     }
 
  
 
-    @PostMapping("/login")
-    public AuthResponse login(@RequestBody AuthRequest request) {
+//     @PostMapping("/login")
+//     public AuthResponse login(@RequestBody AuthRequest request) {
 
-        User user = userService.findByEmail(request.getEmail());
+//         User user = userService.findByEmail(request.getEmail());
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Invalid credentials");
+//         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+//             throw new RuntimeException("Invalid credentials");
+//         }
+
+//         String token = jwtUtil.generateToken(
+//                 user.getId(),
+//                 user.getEmail(),
+//                 user.getRole()
+//         );
+
+//         return new AuthResponse(token, user.getRole());
+//     }
+// }
+
+// ADD THESE IMPORTS AT THE TOP OF UserController.java
+import com.example.demo.security.JwtUtil;
+import com.example.demo.dto.AuthRequest;
+import com.example.demo.dto.AuthResponse;
+import com.example.demo.exception.ResourceNotFoundException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+// YOUR COMPLETE LOGIN METHOD - REPLACE EXISTING ONE:
+@PostMapping("/login")
+@Operation(summary = "Login - Get JWT Token", description = "Returns JWT token for Swagger UI authorization")
+@Tag(name = "Authentication")
+public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+    try {
+        // Validate request
+        if (request.getEmail() == null || request.getPassword() == null || 
+            request.getEmail().trim().isEmpty() || request.getPassword().trim().isEmpty()) {
+            return ResponseEntity.badRequest()
+                .body(new AuthResponse("", "Email and password are required"));
         }
 
-        String token = jwtUtil.generateToken(
-                user.getId(),
-                user.getEmail(),
-                user.getRole()
-        );
-
-        return new AuthResponse(token, user.getRole());
+        // Find user by email using your service
+        User user = userService.getUserByEmail(request.getEmail())
+            .orElseThrow(() -> new ResourceNotFoundException("User not found: " + request.getEmail()));
+        
+        // Simple password check (use BCrypt in production)
+        if (!user.getPassword().equals(request.getPassword())) {
+            return ResponseEntity.status(401)
+                .body(new AuthResponse("", "Invalid password"));
+        }
+        
+        // Generate JWT token
+        String token = JwtUtil.generateToken(user.getEmail(), user.getId());
+        
+        // Return success response
+        return ResponseEntity.ok(new AuthResponse(token, "Login successful"));
+        
+    } catch (ResourceNotFoundException e) {
+        return ResponseEntity.status(404)
+            .body(new AuthResponse("", e.getMessage()));
+    } catch (Exception e) {
+        return ResponseEntity.status(500)
+            .body(new AuthResponse("", "Login failed: " + e.getMessage()));
     }
 }
