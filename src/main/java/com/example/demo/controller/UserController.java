@@ -122,51 +122,106 @@
 //         return new AuthResponse(token, user.getRole());
 //     }
 // }
+package com.example.demo.controller;
 
-// ADD THESE IMPORTS AT THE TOP OF UserController.java
-import com.example.demo.security.JwtUtil;
 import com.example.demo.dto.AuthRequest;
 import com.example.demo.dto.AuthResponse;
 import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.Ticket;
+import com.example.demo.model.TicketCategory;
+import com.example.demo.model.User;
+import com.example.demo.security.JwtUtil;
+import com.example.demo.service.TicketCategoryService;
+import com.example.demo.service.TicketService;
+import com.example.demo.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// YOUR COMPLETE LOGIN METHOD - REPLACE EXISTING ONE:
-@PostMapping("/login")
-@Operation(summary = "Login - Get JWT Token", description = "Returns JWT token for Swagger UI authorization")
-@Tag(name = "Authentication")
-public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
-    try {
-        // Validate request
-        if (request.getEmail() == null || request.getPassword() == null || 
-            request.getEmail().trim().isEmpty() || request.getPassword().trim().isEmpty()) {
-            return ResponseEntity.badRequest()
-                .body(new AuthResponse("", "Email and password are required"));
-        }
+import java.util.List;
+import java.util.Optional;
 
-        // Find user by email using your service
-        User user = userService.getUserByEmail(request.getEmail())
-            .orElseThrow(() -> new ResourceNotFoundException("User not found: " + request.getEmail()));
-        
-        // Simple password check (use BCrypt in production)
-        if (!user.getPassword().equals(request.getPassword())) {
-            return ResponseEntity.status(401)
-                .body(new AuthResponse("", "Invalid password"));
+@RestController
+@RequestMapping("/api")
+@Tag(name = "User & Ticket API")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private TicketService ticketService;
+
+    @Autowired
+    private TicketCategoryService categoryService;
+
+    // ✅ FIXED LOGIN METHOD - COMPLETE & PROPERLY CLOSED
+    @PostMapping("/login")
+    @Operation(summary = "Login - Get JWT Token", description = "Returns JWT token for Swagger UI")
+    @Tag(name = "Authentication")
+    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+        try {
+            // Validate request
+            if (request.getEmail() == null || request.getPassword() == null || 
+                request.getEmail().trim().isEmpty() || request.getPassword().trim().isEmpty()) {
+                return ResponseEntity.badRequest()
+                    .body(new AuthResponse("", "Email and password required"));
+            }
+
+            // Find user
+            User user = userService.getUserByEmail(request.getEmail())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found: " + request.getEmail()));
+            
+            // Verify password
+            if (!user.getPassword().equals(request.getPassword())) {
+                return ResponseEntity.status(401)
+                    .body(new AuthResponse("", "Invalid password"));
+            }
+            
+            // Generate token
+            String token = JwtUtil.generateToken(user.getEmail(), user.getId());
+            
+            return ResponseEntity.ok(new AuthResponse(token, "Login successful"));
+            
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(404).body(new AuthResponse("", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(new AuthResponse("", "Login failed"));
         }
-        
-        // Generate JWT token
-        String token = JwtUtil.generateToken(user.getEmail(), user.getId());
-        
-        // Return success response
-        return ResponseEntity.ok(new AuthResponse(token, "Login successful"));
-        
-    } catch (ResourceNotFoundException e) {
-        return ResponseEntity.status(404)
-            .body(new AuthResponse("", e.getMessage()));
-    } catch (Exception e) {
-        return ResponseEntity.status(500)
-            .body(new AuthResponse("", "Login failed: " + e.getMessage()));
+    }
+
+    // ✅ EXAMPLE: Your other methods (keep your existing ones here)
+    @GetMapping("/users/{id}")
+    @Operation(summary = "Get user by ID")
+    public ResponseEntity<User> getUser(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUser(id));
+    }
+
+    @PostMapping("/users")
+    @Operation(summary = "Register new user")
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
+        return ResponseEntity.ok(userService.registerUser(user));
+    }
+
+    @GetMapping("/tickets")
+    @Operation(summary = "Get all tickets")
+    public ResponseEntity<List<Ticket>> getAllTickets() {
+        return ResponseEntity.ok(ticketService.getAllTickets());
+    }
+
+    @PostMapping("/tickets")
+    @Operation(summary = "Create new ticket")
+    public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket,
+                                               @RequestParam Long userId,
+                                               @RequestParam Long categoryId) {
+        return ResponseEntity.ok(ticketService.createTicket(userId, categoryId, ticket));
+    }
+
+    @GetMapping("/categories")
+    @Operation(summary = "Get all categories")
+    public ResponseEntity<List<TicketCategory>> getAllCategories() {
+        return ResponseEntity.ok(categoryService.getAllCategories());
     }
 }
