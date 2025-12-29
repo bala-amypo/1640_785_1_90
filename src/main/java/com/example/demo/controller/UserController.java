@@ -81,14 +81,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
-public class AuthController {
+@RequestMapping("/users")
+public class UserController {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
-    public Controller(UserService userService,
+    public UserController(UserService userService,
                           PasswordEncoder passwordEncoder,
                           JwtUtil jwtUtil) {
         this.userService = userService;
